@@ -1,6 +1,6 @@
 all: build
 TAG = v0.2.1
-PREFIX = gcr.io/google-containers
+PREFIX = sigmas
 
 deps:
 	go get github.com/tools/godep

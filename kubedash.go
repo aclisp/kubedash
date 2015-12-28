@@ -40,12 +40,16 @@ func main() {
 	glog.Infof("Kubedash version 0.0.1")
 	glog.Infof("Starting kubedash on port %d", *argPort)
 
+	heapsterIp := os.Getenv(strings.ToUpper(*argHeapsterService) + "_SERVICE_HOST")
+	heapsterPort := os.Getenv(strings.ToUpper(*argHeapsterService) + "_SERVICE_PORT")
+
 	if !*argHeadless {
-		heapster_url = fmt.Sprintf("http://%s", *argHeapsterService)
+		heapster_url = fmt.Sprintf("http://%s:%s", heapsterIp, heapsterPort)
 	} else {
 		heapster_url = *argHeapsterURL
 	}
 
+	glog.Infof("Targeting heapster at %s", heapster_url)
 	r := setupHandlers(heapster_url)
 
 	addr := fmt.Sprintf("%s:%d", *argIp, *argPort)
