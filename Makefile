@@ -1,5 +1,5 @@
 all: build
-TAG = v0.2.1
+TAG = v0.2.2
 PREFIX = sigmas
 
 deps:
@@ -12,7 +12,7 @@ clean:
 	rm -f kubedash
 
 container: build
-		docker build -t $(PREFIX)/kubedash:$(TAG) .
+	docker build -t $(PREFIX)/kubedash:$(TAG) .
 
 sanitize:
 	hooks/check_boilerplate.sh
